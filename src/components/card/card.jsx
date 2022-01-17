@@ -1,14 +1,24 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./card.module.css";
+
 const DEFAULT_IMG = "/images/default_logo.png";
-const Card = ({ card }) => {
-  const { name, company, title, email, message, theme, fileName, fileURL } =
-    card;
+
+const Card = memo(({ card }) => {
+  const {
+    //
+    name,
+    company,
+    title,
+    email,
+    message,
+    theme,
+    fileURL,
+  } = card;
   const url = fileURL || DEFAULT_IMG;
 
   return (
     <li className={`${styles.card} ${getStyles(theme)}`}>
-      <img className={styles.avatar} src={url} alt="profile photo" />
+      <img className={styles.avatar} src={url} alt="profile" />
       <div className={styles.info}>
         <h1 className={styles.name}>{name}</h1>
         <p className={styles.company}>{company}</p>
@@ -18,7 +28,7 @@ const Card = ({ card }) => {
       </div>
     </li>
   );
-};
+});
 
 function getStyles(theme) {
   switch (theme) {
